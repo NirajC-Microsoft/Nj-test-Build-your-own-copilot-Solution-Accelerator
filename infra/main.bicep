@@ -179,12 +179,12 @@ var aiFoundryAiServicesAiProjectResourceName = 'proj-${solutionSuffix}'
 
 
 
-var deployerInfo = deployer() ?? {}
-var deployerName = empty(deployerInfo.userPrincipalName) ? 'unknown' : split(deployerInfo.userPrincipalName, '@')[0]
+// var deployerInfo = deployer() ?? {}
+// var deployerName = empty(deployerInfo.userPrincipalName) ? 'unknown' : split(deployerInfo.userPrincipalName, '@')[0]
 
-output deployerInfo object = {
-  userPrincipalName: deployerName//deployerFunc.userPrincipalName
-  tenantId: deployerInfo.tenantId
-}
+// output deployerInfo object = {
+//   userPrincipalName: deployerName//deployerFunc.userPrincipalName
+//   tenantId: deployerInfo.tenantId
+// }
 
-output createdBy string = deployerInfo.userPrincipalName
+// output createdBy string = deployerInfo.userPrincipalName
