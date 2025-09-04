@@ -177,11 +177,10 @@ param tags resourceInput<'Microsoft.Resources/resourceGroups@2025-04-01'>.tags =
 
 var aiFoundryAiServicesAiProjectResourceName = 'proj-${solutionSuffix}'
 
-var deployerInfo = deployer()
 
-var createdBy = empty(deployerInfo.userPrincipalName) ? '' : split(deployerInfo.userPrincipalName, '@')[0]
+@description('Optional created by user name')
+param createdBy string = empty(deployer().userPrincipalName) ? '' : split(deployer().userPrincipalName, '@')[0]
 
-// ========== Resource Group Tag ========== //
 resource resourceGroupTags 'Microsoft.Resources/tags@2021-04-01' = {
   name: 'default'
   properties: {
