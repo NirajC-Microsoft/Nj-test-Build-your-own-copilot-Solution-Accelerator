@@ -177,15 +177,18 @@ param tags resourceInput<'Microsoft.Resources/resourceGroups@2025-04-01'>.tags =
 
 var aiFoundryAiServicesAiProjectResourceName = 'proj-${solutionSuffix}'
 
-var deployerInfo = deployer()
 
-// ========== Resource Group Tag ========== //
+// @description('Optional created by user name')
+// param createdBy string = empty(deployer().userPrincipalName) ? '' : split(deployer().userPrincipalName, '@')[0]
+@description('Who initiated this deployment (no domain part). Pass from pipeline.')
+param createdBy string
+
 resource resourceGroupTags 'Microsoft.Resources/tags@2021-04-01' = {
   name: 'default'
   properties: {
     tags: {
       TemplateName: 'Client Advisor'
-      CreatedBy: split(deployerInfo.userPrincipalName, '@')[0]
+      CreatedBy: createdBy
     }
   }
 }
