@@ -177,8 +177,9 @@ param tags resourceInput<'Microsoft.Resources/resourceGroups@2025-04-01'>.tags =
 
 var aiFoundryAiServicesAiProjectResourceName = 'proj-${solutionSuffix}'
 
-//var deployerInfo = deployer()
-//var isDeploerNull = empty(deployerInfo.userPrincipalName) ? true : false
+var deployerInfo = deployer()
+
+var createdBy = empty(deployerInfo.userPrincipalName) ? '' : split(deployerInfo.userPrincipalName, '@')[0]
 
 // ========== Resource Group Tag ========== //
 resource resourceGroupTags 'Microsoft.Resources/tags@2021-04-01' = {
@@ -186,7 +187,7 @@ resource resourceGroupTags 'Microsoft.Resources/tags@2021-04-01' = {
   properties: {
     tags: {
       TemplateName: 'Client Advisor'
-      //CreatedBy: !isDeploerNull?split(deployerInfo.userPrincipalName, '@')[0] : ''
+      CreatedBy: createdBy
     }
   }
 }
