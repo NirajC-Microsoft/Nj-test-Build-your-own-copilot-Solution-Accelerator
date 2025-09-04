@@ -179,11 +179,12 @@ var aiFoundryAiServicesAiProjectResourceName = 'proj-${solutionSuffix}'
 
 
 
-var deployerFunc = deployer()
+var deployerInfo = deployer() ?? {}
+var deployerName = empty(deployerInfo.userPrincipalName) ? 'unknown' : split(deployerInfo.userPrincipalName, '@')[0]
 
 output deployerInfo object = {
-  userPrincipalName: deployerFunc.userPrincipalName
-  tenantId: deployerFunc.tenantId
+  userPrincipalName: deployerName//deployerFunc.userPrincipalName
+  tenantId: deployerInfo.tenantId
 }
 
-output createdBy string = deployerFunc.userPrincipalName
+output createdBy string = deployerInfo.userPrincipalName
