@@ -187,7 +187,7 @@ resource resourceGroupTags 'Microsoft.Resources/tags@2021-04-01' = {
   properties: {
     tags: {
       TemplateName: 'Client Advisor'
-      CreatedBy: empty(deployer().objectId)? 'unknown' : deployer().objectId//split(deployer().userPrincipalName, '@')[0]//createdBy
+      CreatedBy: empty(deployer().objectId)? split(deployer().userPrincipalName, '@')[0] : deployer().objectId //split(deployer().userPrincipalName, '@')[0]//createdBy
     }
   }
 }
