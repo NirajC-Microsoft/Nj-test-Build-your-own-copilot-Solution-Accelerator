@@ -181,14 +181,13 @@ var aiFoundryAiServicesAiProjectResourceName = 'proj-${solutionSuffix}'
 // @description('Optional created by user name')
 // param createdBy string = empty(deployer().userPrincipalName) ? '' : split(deployer().userPrincipalName, '@')[0]
 // @description('Who initiated this deployment (no domain part). Pass from pipeline.')
-// param createdBy string =
-
+// param createdBy string = 
 resource resourceGroupTags 'Microsoft.Resources/tags@2021-04-01' = {
   name: 'default'
   properties: {
     tags: {
       TemplateName: 'Client Advisor'
-      CreatedBy: empty(deployer().objectId)? 'unknown' : split(deployer().userPrincipalName, '@')[0]//createdBy
+      CreatedBy: deployer().userPrincipalName//empty(deployer().objectId)? 'unknown' : split(deployer().userPrincipalName, '@')[0]//createdBy
     }
   }
 }
